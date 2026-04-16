@@ -1,0 +1,49 @@
+// This is your Prisma schema file
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Inventory {
+  id         Int      @id @default(autoincrement())
+  metalName  String   @unique
+  category   String
+  quantityKg Float    @default(0)
+  pricePerKg Float
+  purity     Float
+  status     String   @default("In Stock")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  orders     Order[]
+}
+
+model Order {
+  id          Int       @id @default(autoincrement())
+  buyerName   String
+  buyerEmail  String
+  companyName String
+  metalId     Int
+  quantityKg  Float
+  totalPrice  Float
+  status      String    @default("Pending")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  metal       Inventory @relation(fields: [metalId], references: [id])
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String
+  inquiry   String
+  message   String
+  status    String   @default("Unread")
+  createdAt DateTime @default(now())
+}
