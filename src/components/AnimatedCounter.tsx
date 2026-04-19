@@ -17,11 +17,16 @@ export default function AnimatedCounter({
   suffix?: string;
 }) {
   const [count, setCount] = useState(0);
+  const [mounted, setMounted] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
-    if (!inView) return;
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!inView || !mounted) return;
 
     let frame = 0;
     const totalFrames = STEPS;

@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const baseUrl = 'https://your-domain.com';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ecometal.dev';
 
     // Static routes
     const staticRoutes = [
