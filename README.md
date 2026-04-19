@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EcoMetal | Smart E-Waste Segregation Platform
 
-## Getting Started
+EcoMetal is a premium, AI-powered platform designed to revolutionize the e-waste lifecycle. From automated collection and segregation to a transparent marketplace for recovered precious metals, EcoMetal ensures sustainability meets profitability.
 
-First, run the development server:
+## 🚀 Key Features
 
+- **Smart AI Segregation**: Real-time identification and routing of metals (Copper, Gold, Lithium, etc.) using computer vision and composition analysis.
+- **Warehouse Storage Dashboard**: Live tracking of inventory levels, storage capacity, and automated bin allocation.
+- **Precious Metal Marketplace**: A secure hub for professional buyers to purchase high-purity recycled metals with bulk-sample verification.
+- **Environmental Impact Tracking**: Real-time metrics on CO2 savings, energy conservation, and toxin neutralization.
+- **Next.js 16 + Tailwind CSS v4**: Built with the latest cutting-edge technologies for maximum performance and a premium "glass-morphism" aesthetic.
+
+## 🛠️ Technology Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Database**: [Prisma](https://www.prisma.io/) with SQLite
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Charts**: [Recharts](https://recharts.org/)
+
+## 📦 Getting Started
+
+### 1. Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Database Setup
+```bash
+npx prisma generate
+node seed.js
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Development Server
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to see the platform in action.
 
-## Learn More
+## 🌎 SEO & Sitemaps
+The project includes automated sitemap and robots generation located in `src/app/sitemap.ts` and `src/app/robots.ts`. Ensure `NEXT_PUBLIC_BASE_URL` is set in your environment for production deployment.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Built with ❤️ for a Sustainable Future.
