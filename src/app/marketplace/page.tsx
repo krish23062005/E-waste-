@@ -100,6 +100,7 @@ export default function Marketplace() {
           <div className="relative flex-1 md:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" size={18} />
             <input 
+              id="input-marketplace-search"
               type="text" 
               placeholder="Search metals..." 
               value={search}
@@ -111,6 +112,7 @@ export default function Marketplace() {
             <Filter size={20} />
           </button>
           <button 
+            id="btn-open-cart"
             onClick={() => setIsCartOpen(true)}
             className="relative p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-primary transition-colors"
           >
@@ -224,7 +226,11 @@ export default function Marketplace() {
                 <h2 className="text-2xl font-bold flex items-center gap-2">
                   <ShoppingBag /> Your Cart
                 </h2>
-                <button onClick={() => setIsCartOpen(false)} className="p-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+                <button 
+                  id="btn-close-cart"
+                  onClick={() => setIsCartOpen(false)} 
+                  className="p-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors"
+                >
                   <X size={20} />
                 </button>
               </div>
@@ -282,6 +288,7 @@ export default function Marketplace() {
                     
                     <div className="space-y-3 pt-4">
                       <input 
+                        id="input-buyer-name"
                         type="text" 
                         placeholder="Your Name (Required)" 
                         value={buyerName}
@@ -305,6 +312,7 @@ export default function Marketplace() {
                     </div>
 
                     <button 
+                      id="btn-confirm-purchase"
                       onClick={handleCheckout}
                       disabled={checkoutLoading || !buyerName || !buyerEmail}
                       className="w-full py-4 rounded-xl bg-primary text-black font-bold flex items-center justify-center transition-all hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed mt-4"

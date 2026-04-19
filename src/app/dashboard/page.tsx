@@ -15,6 +15,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const fetchOrders = async () => {
     try {
@@ -43,6 +44,7 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    setMounted(true);
     fetchInventory();
     fetchOrders();
 
@@ -122,6 +124,7 @@ export default function Dashboard() {
           <p className="text-white/60">Real-time tracking of recovered metals and storage capacity.</p>
         </div>
         <button 
+          id="btn-record-collection"
           onClick={() => setIsFormOpen(true)}
           className="flex items-center gap-2 px-6 py-3 bg-primary text-black font-bold rounded-xl hover:bg-primary/90 transition-all active:scale-95"
         >
@@ -215,13 +218,17 @@ export default function Dashboard() {
              <div className="w-full h-full flex items-center justify-center">
                <Loader2 className="w-8 h-8 text-primary animate-spin" />
              </div>
+          ) : !mounted ? (
+             <div className="w-full h-full flex items-center justify-center">
+               <Loader2 className="w-8 h-8 text-primary animate-spin" />
+             </div>
           ) : inventory.length === 0 ? (
              <div className="w-full h-full flex flex-col items-center justify-center text-white/40">
                <Database size={48} className="mb-4 opacity-20" />
                <p>No data available. Start by recording a collection.</p>
              </div>
           ) : (
-            <ResponsiveContainer width="100%" height="85%">
+            <ResponsiveContainer width="100%" height="85%" id="chart-inventory-distribution">
               <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" vertical={false} />
                 <XAxis dataKey="name" stroke="#ffffff60" fontSize={12} tickLine={false} axisLine={false} />
@@ -377,7 +384,11 @@ export default function Dashboard() {
             >
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">Record Collection</h2>
-                <button onClick={() => setIsFormOpen(false)} className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                <button 
+                  id="btn-close-modal"
+                  onClick={() => setIsFormOpen(false)} 
+                  className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                >
                   <X size={20} />
                 </button>
               </div>
@@ -386,7 +397,9 @@ export default function Dashboard() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5 text-sm">
                     <label className="text-white/60">Metal Name</label>
-                    <input required name="metalName" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white outline-none focus:border-primary/50" placeholder="e.g. Copper Wire" />
+                    <input 
+                      id="input-metal-name"
+                      required name="metalName" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white outline-none focus:border-primary/50" placeholder="e.g. Copper Wire" />
                   </div>
                   <div className="space-y-1.5 text-sm">
                     <label className="text-white/60">Category</label>
@@ -415,6 +428,7 @@ export default function Dashboard() {
                 </div>
 
                 <button 
+                  id="btn-save-collection"
                   disabled={submitting}
                   className="w-full py-4 bg-primary text-black font-bold rounded-xl hover:bg-primary/90 transition-all mt-4 flex items-center justify-center gap-2"
                 >

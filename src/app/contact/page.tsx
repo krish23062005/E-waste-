@@ -194,6 +194,7 @@ export default function Contact() {
                 </div>
 
                 <button 
+                  id="btn-contact-submit"
                   type="submit"
                   disabled={formStatus === 'submitting'}
                   className="w-full py-4 rounded-xl font-bold flex text-center justify-center items-center bg-primary text-black hover:bg-primary/90 transition-all mt-2 group"
